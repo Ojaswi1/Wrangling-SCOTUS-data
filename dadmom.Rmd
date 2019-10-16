@@ -1,0 +1,33 @@
+---
+title: "Tidying `dadmom`"
+author: "Your name"
+output: github_document
+---
+
+# Get the data
+
+```{r}
+# don't modify this chunk unless you still need to install rcfss
+# if so, run "devtools::install_github("uc-cfss/rcfss")" in the console first
+
+library(tidyverse)
+library(rcfss)
+
+data("dadmom")
+dadmom
+```
+
+# Tidied data
+
+```{r}
+# write your code to tidy the data here
+```
+
+## Session info
+
+```{r, echo = TRUE}
+# don't modify this chunk
+devtools::session_info()
+```
+
+

@@ -1,0 +1,38 @@
+---
+title: "Joining Gapminder Data"
+author: "Your name"
+output: github_document
+---
+
+# Get the original data
+
+```{r, echo = TRUE}
+library(tidyverse)
+library(gapminder)
+
+gapminder
+```
+
+# Import the HIV data
+
+```{r}
+```
+
+# What is the relationship between HIV prevalence and life expectancy?
+
+```{r}
+```
+
+# Which continents have the most observations with missing HIV data?
+
+```{r}
+```
+
+
+## Session info
+
+```{r, echo = TRUE}
+devtools::session_info()
+```
+
+

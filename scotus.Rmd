@@ -1,0 +1,74 @@
+---
+title: "Exploring U.S. Supreme Court Decisions"
+author: "Your name"
+output: github_document
+---
+
+## Get the data
+
+```{r, echo = TRUE}
+# load useful packages
+library(tidyverse)
+
+# load data
+scdbv_mod <- read_csv("data/SCDB_2019_01_justiceCentered_Citation.csv")
+scdbv_leg <- read_csv("data/SCDB_Legacy_05_justiceCentered_Citation.csv")
+scdbv_mod
+scdbv_leg
+```
+
+## Combine the datasets
+
+```{r}
+# scdbv <- # add your code here
+```
+
+## Recode variables as you find necessary
+
+```{r}
+
+```
+
+## What percentage of cases in each term are decided by a one-vote margin (i.e. 5-4, 4-3, etc.)
+
+```{r}
+
+```
+
+## In each term he served on the Court, in what percentage of cases was Justice Antonin Scalia in the majority?
+
+```{r}
+
+```
+
+## Create a graph similar to above that adds a second component which compares the percentage for all cases versus non-unanimous cases (i.e. there was at least one dissenting vote)
+
+```{r}
+
+```
+
+## In each term, what percentage of cases were decided in the conservative direction?
+
+```{r}
+
+```
+
+## The Chief Justice is frequently seen as capable of influencing the ideological direction of the Court. Create a graph similar to the one above that also incorporates information on who was the Chief Justice during the term.
+
+```{r}
+
+```
+
+## In each term, how many of the term's published decisions (decided after oral arguments) were announced in a given month?
+
+```{r}
+
+```
+
+## Session info
+
+```{r, echo = TRUE}
+devtools::session_info()
+```
+
+
