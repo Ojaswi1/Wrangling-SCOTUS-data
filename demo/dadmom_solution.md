@@ -50,7 +50,17 @@ dadmom
 ## Using `pivot_*()`
 
     ## # A tibble: 6 x 4
-    ##   famid sex   name    inc
+    ##   famid type  name    inc
+    ##   <dbl> <chr> <chr> <dbl>
+    ## 1     1 d     Bill  30000
+    ## 2     1 m     Bess  15000
+    ## 3     2 d     Art   22000
+    ## 4     2 m     Amy   18000
+    ## 5     3 d     Paul  25000
+    ## 6     3 m     Pat   50000
+
+    ## # A tibble: 6 x 4
+    ##   famid type  name    inc
     ##   <dbl> <chr> <chr> <dbl>
     ## 1     1 d     Bill  30000
     ## 2     1 m     Bess  15000

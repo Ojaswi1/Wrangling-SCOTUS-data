@@ -17,34 +17,32 @@ scdbv_mod
 ```
 
     ## # A tibble: 80,269 x 61
-    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite
-    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr> 
-    ##  1 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  2 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  3 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  4 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  5 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  6 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  7 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  8 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  9 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ## 10 1946-… 1946-00… 1946-002-01… 1946-… 11/18/1946              1 329 U…
-    ## # … with 80,259 more rows, and 54 more variables: sctCite <chr>,
-    ## #   ledCite <chr>, lexisCite <chr>, term <dbl>, naturalCourt <dbl>,
-    ## #   chief <chr>, docket <chr>, caseName <chr>, dateArgument <chr>,
-    ## #   dateRearg <chr>, petitioner <dbl>, petitionerState <dbl>,
-    ## #   respondent <dbl>, respondentState <dbl>, jurisdiction <dbl>,
-    ## #   adminAction <dbl>, adminActionState <dbl>, threeJudgeFdc <dbl>,
-    ## #   caseOrigin <dbl>, caseOriginState <dbl>, caseSource <dbl>,
-    ## #   caseSourceState <dbl>, lcDisagreement <dbl>, certReason <dbl>,
-    ## #   lcDisposition <dbl>, lcDispositionDirection <dbl>,
+    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite sctCite
+    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr>  <chr>  
+    ##  1 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  2 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  3 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  4 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  5 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  6 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  7 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  8 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  9 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ## 10 1946-… 1946-00… 1946-002-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ## # … with 80,259 more rows, and 53 more variables: ledCite <chr>,
+    ## #   lexisCite <chr>, term <dbl>, naturalCourt <dbl>, chief <chr>, docket <chr>,
+    ## #   caseName <chr>, dateArgument <chr>, dateRearg <chr>, petitioner <dbl>,
+    ## #   petitionerState <dbl>, respondent <dbl>, respondentState <dbl>,
+    ## #   jurisdiction <dbl>, adminAction <dbl>, adminActionState <dbl>,
+    ## #   threeJudgeFdc <dbl>, caseOrigin <dbl>, caseOriginState <dbl>,
+    ## #   caseSource <dbl>, caseSourceState <dbl>, lcDisagreement <dbl>,
+    ## #   certReason <dbl>, lcDisposition <dbl>, lcDispositionDirection <dbl>,
     ## #   declarationUncon <dbl>, caseDisposition <dbl>,
     ## #   caseDispositionUnusual <dbl>, partyWinning <dbl>,
-    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>,
-    ## #   issueArea <dbl>, decisionDirection <dbl>,
-    ## #   decisionDirectionDissent <dbl>, authorityDecision1 <dbl>,
-    ## #   authorityDecision2 <dbl>, lawType <dbl>, lawSupp <dbl>,
-    ## #   lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
+    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>, issueArea <dbl>,
+    ## #   decisionDirection <dbl>, decisionDirectionDissent <dbl>,
+    ## #   authorityDecision1 <dbl>, authorityDecision2 <dbl>, lawType <dbl>,
+    ## #   lawSupp <dbl>, lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
     ## #   splitVote <dbl>, majVotes <dbl>, minVotes <dbl>, justice <dbl>,
     ## #   justiceName <chr>, vote <dbl>, opinion <dbl>, direction <dbl>,
     ## #   majority <dbl>, firstAgreement <dbl>, secondAgreement <dbl>
@@ -54,34 +52,32 @@ scdbv_leg
 ```
 
     ## # A tibble: 172,213 x 61
-    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite
-    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr> 
-    ##  1 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S…
-    ##  2 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S…
-    ##  3 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S…
-    ##  4 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S…
-    ##  5 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S…
-    ##  6 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S…
-    ##  7 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S…
-    ##  8 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S…
-    ##  9 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S…
-    ## 10 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S…
-    ## # … with 172,203 more rows, and 54 more variables: sctCite <lgl>,
-    ## #   ledCite <chr>, lexisCite <chr>, term <dbl>, naturalCourt <dbl>,
-    ## #   chief <chr>, docket <chr>, caseName <chr>, dateArgument <chr>,
-    ## #   dateRearg <chr>, petitioner <dbl>, petitionerState <dbl>,
-    ## #   respondent <dbl>, respondentState <dbl>, jurisdiction <dbl>,
-    ## #   adminAction <dbl>, adminActionState <dbl>, threeJudgeFdc <dbl>,
-    ## #   caseOrigin <dbl>, caseOriginState <dbl>, caseSource <dbl>,
-    ## #   caseSourceState <dbl>, lcDisagreement <dbl>, certReason <dbl>,
-    ## #   lcDisposition <dbl>, lcDispositionDirection <dbl>,
+    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite sctCite
+    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr>  <lgl>  
+    ##  1 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S… NA     
+    ##  2 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S… NA     
+    ##  3 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S… NA     
+    ##  4 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S… NA     
+    ##  5 1791-… 1791-00… 1791-001-01… 1791-… 8/3/1791                6 2 U.S… NA     
+    ##  6 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S… NA     
+    ##  7 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S… NA     
+    ##  8 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S… NA     
+    ##  9 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S… NA     
+    ## 10 1791-… 1791-00… 1791-002-01… 1791-… 8/3/1791                2 2 U.S… NA     
+    ## # … with 172,203 more rows, and 53 more variables: ledCite <chr>,
+    ## #   lexisCite <chr>, term <dbl>, naturalCourt <dbl>, chief <chr>, docket <chr>,
+    ## #   caseName <chr>, dateArgument <chr>, dateRearg <chr>, petitioner <dbl>,
+    ## #   petitionerState <dbl>, respondent <dbl>, respondentState <dbl>,
+    ## #   jurisdiction <dbl>, adminAction <dbl>, adminActionState <dbl>,
+    ## #   threeJudgeFdc <dbl>, caseOrigin <dbl>, caseOriginState <dbl>,
+    ## #   caseSource <dbl>, caseSourceState <dbl>, lcDisagreement <dbl>,
+    ## #   certReason <dbl>, lcDisposition <dbl>, lcDispositionDirection <dbl>,
     ## #   declarationUncon <dbl>, caseDisposition <dbl>,
     ## #   caseDispositionUnusual <dbl>, partyWinning <dbl>,
-    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>,
-    ## #   issueArea <dbl>, decisionDirection <dbl>,
-    ## #   decisionDirectionDissent <dbl>, authorityDecision1 <dbl>,
-    ## #   authorityDecision2 <dbl>, lawType <dbl>, lawSupp <dbl>,
-    ## #   lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
+    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>, issueArea <dbl>,
+    ## #   decisionDirection <dbl>, decisionDirectionDissent <dbl>,
+    ## #   authorityDecision1 <dbl>, authorityDecision2 <dbl>, lawType <dbl>,
+    ## #   lawSupp <dbl>, lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
     ## #   splitVote <dbl>, majVotes <dbl>, minVotes <dbl>, justice <dbl>,
     ## #   justiceName <chr>, vote <dbl>, opinion <dbl>, direction <dbl>,
     ## #   majority <dbl>, firstAgreement <dbl>, secondAgreement <dbl>
@@ -89,34 +85,32 @@ scdbv_leg
 ## Combine the datasets
 
     ## # A tibble: 252,482 x 61
-    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite
-    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr> 
-    ##  1 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  2 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  3 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  4 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  5 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  6 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  7 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  8 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ##  9 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U…
-    ## 10 1946-… 1946-00… 1946-002-01… 1946-… 11/18/1946              1 329 U…
-    ## # … with 252,472 more rows, and 54 more variables: sctCite <chr>,
-    ## #   ledCite <chr>, lexisCite <chr>, term <dbl>, naturalCourt <dbl>,
-    ## #   chief <chr>, docket <chr>, caseName <chr>, dateArgument <chr>,
-    ## #   dateRearg <chr>, petitioner <dbl>, petitionerState <dbl>,
-    ## #   respondent <dbl>, respondentState <dbl>, jurisdiction <dbl>,
-    ## #   adminAction <dbl>, adminActionState <dbl>, threeJudgeFdc <dbl>,
-    ## #   caseOrigin <dbl>, caseOriginState <dbl>, caseSource <dbl>,
-    ## #   caseSourceState <dbl>, lcDisagreement <dbl>, certReason <dbl>,
-    ## #   lcDisposition <dbl>, lcDispositionDirection <dbl>,
+    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite sctCite
+    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr>  <chr>  
+    ##  1 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  2 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  3 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  4 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  5 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  6 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  7 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  8 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  9 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ## 10 1946-… 1946-00… 1946-002-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ## # … with 252,472 more rows, and 53 more variables: ledCite <chr>,
+    ## #   lexisCite <chr>, term <dbl>, naturalCourt <dbl>, chief <chr>, docket <chr>,
+    ## #   caseName <chr>, dateArgument <chr>, dateRearg <chr>, petitioner <dbl>,
+    ## #   petitionerState <dbl>, respondent <dbl>, respondentState <dbl>,
+    ## #   jurisdiction <dbl>, adminAction <dbl>, adminActionState <dbl>,
+    ## #   threeJudgeFdc <dbl>, caseOrigin <dbl>, caseOriginState <dbl>,
+    ## #   caseSource <dbl>, caseSourceState <dbl>, lcDisagreement <dbl>,
+    ## #   certReason <dbl>, lcDisposition <dbl>, lcDispositionDirection <dbl>,
     ## #   declarationUncon <dbl>, caseDisposition <dbl>,
     ## #   caseDispositionUnusual <dbl>, partyWinning <dbl>,
-    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>,
-    ## #   issueArea <dbl>, decisionDirection <dbl>,
-    ## #   decisionDirectionDissent <dbl>, authorityDecision1 <dbl>,
-    ## #   authorityDecision2 <dbl>, lawType <dbl>, lawSupp <dbl>,
-    ## #   lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
+    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>, issueArea <dbl>,
+    ## #   decisionDirection <dbl>, decisionDirectionDissent <dbl>,
+    ## #   authorityDecision1 <dbl>, authorityDecision2 <dbl>, lawType <dbl>,
+    ## #   lawSupp <dbl>, lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
     ## #   splitVote <dbl>, majVotes <dbl>, minVotes <dbl>, justice <dbl>,
     ## #   justiceName <chr>, vote <dbl>, opinion <dbl>, direction <dbl>,
     ## #   majority <dbl>, firstAgreement <dbl>, secondAgreement <dbl>
