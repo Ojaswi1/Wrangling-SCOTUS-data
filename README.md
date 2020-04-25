@@ -1,5 +1,8 @@
 # Homework 03: Exploring and wrangling data
 
+**Ojaswi Malik** 
+- First Commit: Making sure Setup works
+
 See detailed instructions for this homework assignment [here](https://cfss.uchicago.edu/homework/wrangle-data/).
 
 ## Required packages
