@@ -1,6 +1,6 @@
 ---
 title: "Tidying `dadmom`"
-author: "Your name"
+author: "Ojaswi Malik"
 output: github_document
 ---
 
@@ -21,6 +21,15 @@ dadmom
 
 ```{r}
 # write your code to tidy the data here
+  
+dadmom %>%
+  gather(key = "variables", value = "value", named:incm) %>%
+  separate(col = "variables", c("variable_name", "type"), -1) %>%
+  pivot_wider(
+    names_from = variable_name,
+    values_from = value
+  )
+
 ```
 
 ## Session info
