@@ -8,14 +8,14 @@ Ojaswi Malik
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+    ## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 
     ## ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
     ## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
     ## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
     ## ✓ readr   1.3.1     ✓ forcats 0.5.0
 
-    ## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -62,6 +62,9 @@ dataframe. This way all the NA values for hivRate for countries that are
 present in gapminder and not in hiv\_data can be removed and we can
 easily plot our graph.
 
+**Answer**: The general trend from the plot appears that as HIV
+prevalence increases, life expectancy is falling.
+
 ``` r
 gapminder %>%
   inner_join(y = hiv_data) %>%
@@ -92,6 +95,9 @@ continents in gapminder (x) that do not have a corresponding HIV value
 in hiv\_data, it is best to use anti\_join. It is a filtering join which
 will return all rows in X that do not have a match in Y, which is
 exactly what we need.
+
+**Answer**: Africa is the continent with the most observations with
+missing HIV data.
 
 ``` r
 gapminder %>%
@@ -129,7 +135,7 @@ devtools::session_info()
     ##  collate  en_US.UTF-8                 
     ##  ctype    en_US.UTF-8                 
     ##  tz       Asia/Kolkata                
-    ##  date     2020-04-26                  
+    ##  date     2020-04-27                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        

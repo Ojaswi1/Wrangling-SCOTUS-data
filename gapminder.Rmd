@@ -23,6 +23,8 @@ hiv_data <- read_csv("data/gapminder_hiv.csv")
 
 **Inner Join used** because the number of the data objects are greater in gapminder (X) than in hiv_data (Y) and using inner join will return all values in the X dataframe that have matching values in the Y dataframe. This way all the NA values for hivRate for countries that are present in gapminder and not in hiv_data can be removed and we can easily plot our graph.
 
+**Answer**: The general trend from the plot appears that as HIV prevalence increases, life expectancy is falling.
+
 ```{r}
 
 gapminder %>%
@@ -42,6 +44,8 @@ gapminder %>%
 # Which continents have the most observations with missing HIV data?
 
 **Anti Join used** In order to narrow down those countries inside continents in gapminder (x) that do not have a corresponding HIV value in hiv_data, it is best to use anti_join. It is a filtering join which will return all rows in X that do not have a match in Y, which is exactly what we need.
+
+**Answer**: Africa is the continent with the most observations with missing HIV data.
 
 ```{r}
 gapminder %>%
