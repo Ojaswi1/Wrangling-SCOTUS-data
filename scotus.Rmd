@@ -49,15 +49,22 @@ cases <- scdbv %>%
 unique_cases <- unique(cases)
 
 unique_cases %>%
-  mutate(one_vote = majVotes - minVotes) %>%
-  filter(one_vote == 1) %>%
-  group_by(term, one_vote) %>%
+  group_by(term) %>%
+  mutate(total = n(), one_vote = majVotes - minVotes) %>%
+  filter(one_vote == 1 ) %>%
+  group_by(term, one_vote, total) %>%
   summarise(
     count = n(),
   ) %>%
-  ggplot(mapping = aes(x = term, y = (count)/sum(count) )) +
+  ggplot(mapping = aes(x = term, y = count/total )) +
   geom_line() +
-  scale_y_continuous(labels=scales::percent)
+  scale_y_continuous(labels=scales::percent) + 
+  labs ( title = "Percent of US Supreme court cases decided by 1-vote margin", 
+         x = "Term",
+         y = "Percent of total cases decided", 
+         caption = "Source: The Supreme Court Database")
+
+# 0 not taken in account on x-axis
 ```
 
 ## In each term he served on the Court, in what percentage of cases was Justice Antonin Scalia in the majority?
@@ -85,9 +92,10 @@ scdbv %>%
 
 all_cases <- scdbv %>%
   filter(justiceName == "AScalia" ) %>%
+  select(term, minVotes, majority) %>%
   group_by(term) %>%
   summarise(
-    percent = mean(majority == 2, na.rm = TRUE) 
+    percent = mean(majority == 2, na.rm = TRUE)
   ) 
 
 non_unanimous <- scdbv %>%
@@ -97,29 +105,43 @@ non_unanimous <- scdbv %>%
     percent = mean(majority == 2, na.rm = TRUE) 
   )
   
-  
+
 ggplot( mapping = aes(x = term, y = percent)) +
-  geom_line(data = all_cases) +
-  geom_line(data = non_unanimous) + 
+  geom_line(data = all_cases, aes(color = "All decisions")) +
+  geom_line(data = non_unanimous, aes(color = "Non-unanimous decisions")) + 
   scale_y_continuous(labels = scales::percent, limits=c(0,NA)) +
   labs ( title = "Percent of the time Scalia was in the majority", 
          x = "Term",
          y = "Percent of total decisions", 
-         caption = "Source: The Supreme Court Database")
+         caption = "Source: The Supreme Court Database") +
+  theme(legend.position="bottom", legend.title = element_blank())
 
-#issue - COLOR LINES
+
 
 ```
 
 ## In each term, what percentage of cases were decided in the conservative direction?
 
 ```{r}
-scdbv %>%
+case <- scdbv %>%
+  select(caseIssuesId, term, decisionDirection)
+
+only_unique_cases <- unique(case)
+
+only_unique_cases %>%
+  group_by(term) %>%
+  mutate(total = n()) %>%
   filter( decisionDirection == 1) %>%
-  group_by(term, decisionDirection) %>%
+  group_by(term, decisionDirection, total) %>%
   summarise( count = n()) %>%
-  ggplot (mapping = aes(x = term, y = count/sum(count))) +
-  geom_line()
+  ggplot (mapping = aes(x = term, y = count/total)) +
+  geom_line() +
+  scale_y_continuous(labels=scales::percent) + 
+  labs ( title = "U.S. Supreme Court",
+         subtitle = "Percent of cases decided in a conservative fashion", 
+         x = "Term",
+         y = "Percent of total decisions", 
+         caption = "Source: The Supreme Court Database")
 
 ```
 
@@ -132,6 +154,7 @@ scdbv %>%
 ## In each term, how many of the term's published decisions (decided after oral arguments) were announced in a given month?
 
 ```{r}
+
 
 ```
 
