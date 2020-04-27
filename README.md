@@ -1,9 +1,11 @@
 # Homework 03: Exploring and wrangling data
 
 **Ojaswi Malik** 
-- Solutions for dadmon -> dadmom.Rmd
+- Solutions for dadmom -> dadmom.Rmd
 - Solutions for gapminder -> gapminder.Rmd
 - Solutions for scotus -> scotus.Rmd
+
+_______________________________________________________________________________________________________________
 
 See detailed instructions for this homework assignment [here](https://cfss.uchicago.edu/homework/wrangle-data/).
 
