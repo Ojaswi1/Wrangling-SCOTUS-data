@@ -143,7 +143,7 @@ ggplot( mapping = aes(x = term, y = percent)) +
 
 ## In each term, what percentage of cases were decided in the conservative direction?
 
-**Answer**: Decisions in the conservative direction are range between approx. 10-70% of all cases. Even in consecutive years, the decisions can be drastically different.
+**Answer**: Decisions in the conservative direction range between approx. 10-70% of all cases. Even in consecutive years, the decisions can be drastically different.
 
 ```{r}
 only_unique_cases <- scdbv %>%
