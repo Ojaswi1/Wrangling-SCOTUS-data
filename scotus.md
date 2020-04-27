@@ -150,7 +150,7 @@ scdbv
 **Answer**: One-vote margin decisions were relatively low in earlier
 terms until 1925 when they started rising. However, there are high peaks
 and low troughs indicating there is no constant trend of one-vote margin
-decisions. The high peak to 50% before 1800 is due 1 one-vote margin
+decisions. The high peak to 50% before 1800 is due to 1 one-vote margin
 decision out of 2 total decisions in 1794.
 
 ``` r
@@ -388,7 +388,7 @@ devtools::session_info()
     ##  collate  en_US.UTF-8                 
     ##  ctype    en_US.UTF-8                 
     ##  tz       Asia/Kolkata                
-    ##  date     2020-04-27                  
+    ##  date     2020-04-28                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
