@@ -155,6 +155,30 @@ only_unique_cases %>%
 
 ```{r}
 
+library(lubridate)
+
+month_levels <- c("October","November","December","January","February","March","April","May","June","July","August","September")
+
+selected_unique_cases <- scdbv %>%
+  select(caseIssuesId, term, decisionType, dateDecision) %>%
+  unique()
+
+selected_unique_cases %>%
+  filter(decisionType %in% c(1,6,7)) %>%
+  mutate(dateDecision = mdy(dateDecision)) %>%
+  mutate(months = month(dateDecision, label = TRUE, abbr = FALSE)) %>%
+  group_by(months, term) %>%
+  summarise(count = n()) %>%
+  ggplot(mapping = aes(x = count, y = fct_rev(factor(months, levels = month_levels)) )) + 
+  geom_boxplot() +
+  labs ( title = "U.S. Supreme Court",
+         subtitle = "Number of decisions announced post-oral arguments per month, by term", 
+         x = "Number of decisions announced in a term-month",
+         y = NULL,
+         caption = "Source: The Supreme Court Database")
+  
+
+
 
 ```
 
