@@ -154,14 +154,17 @@ decisions. The high peak to 50% before 1800 is due 1 one-vote margin
 decision out of 2 total decisions in 1794.
 
 ``` r
+#Creating a table with each row being 1 case
 unique_cases <- scdbv %>%
   select(caseIssuesId, term, majVotes, minVotes)%>%
   unique()
 
+#This table has the total number of cases term wise
 total_cases <- unique_cases %>%
   group_by(term) %>%
   summarise(total = n())
 
+#This table has total number one-vote cases term wise
 only_one_vote <- unique_cases %>%
   mutate(one_vote = majVotes - minVotes) %>%
   filter(one_vote == 1 ) %>%
@@ -170,6 +173,7 @@ only_one_vote <- unique_cases %>%
     count = n(),
   ) 
 
+#Using left-join to join the tables and replacing the na values with 0
 joined <- left_join(x = total_cases, y = only_one_vote) %>%
   select(term, total, count) %>%
   mutate(count = replace_na(count, 0))
@@ -178,6 +182,7 @@ joined <- left_join(x = total_cases, y = only_one_vote) %>%
     ## Joining, by = "term"
 
 ``` r
+#Plotting the graph
 joined %>%
   ggplot(mapping = aes(x = term, y = count/total )) +
   geom_line() +
@@ -221,6 +226,7 @@ in majority. Both graphs follow similiar patterns, but non-unanimous
 decisons are a lower percent than all decisions.
 
 ``` r
+#First creating the same dataframe as the previous question
 all_cases <- scdbv %>%
   filter(justiceName == "AScalia" ) %>%
   select(term, minVotes, majority) %>%
@@ -229,6 +235,7 @@ all_cases <- scdbv %>%
     percent = mean(majority == 2, na.rm = TRUE)
   ) 
 
+#Creating another dataframe with the adjustment of non-unanimous decisions
 non_unanimous <- scdbv %>%
   filter( justiceName == "AScalia" & minVotes > 0) %>%
   group_by(term) %>%
@@ -236,7 +243,7 @@ non_unanimous <- scdbv %>%
     percent = mean(majority == 2, na.rm = TRUE) 
   )
   
-
+#Layering the 2 line graphs in ggplot
 ggplot( mapping = aes(x = term, y = percent)) +
   geom_line(data = all_cases, aes(color = "All decisions")) +
   geom_line(data = non_unanimous, aes(color = "Non-unanimous decisions")) + 
@@ -291,6 +298,7 @@ only_unique_cases_chief <- scdbv %>%
   select(caseIssuesId, term, decisionDirection, chief) %>%
   unique()
 
+#To factor the chiefs when faceting to get the correct order of the chiefs
 chief_levels <- c("Jay", "Rutledge", "Ellsworth","Marshall","Taney","Chase","Waite","Fuller","White","Taft","Hughes","Stone","Vinson","Warren","Burger","Rehnquist","Roberts")
 
 only_unique_cases_chief %>%
@@ -324,6 +332,7 @@ September). June has the highest median for number of published
 decisions announced.
 
 ``` r
+#installing lubridate to use the mdy and month operation
 library(lubridate)
 ```
 
@@ -339,6 +348,7 @@ library(lubridate)
     ##     date, intersect, setdiff, union
 
 ``` r
+#To factor the months according to the supreme court calendar
 month_levels <- c("October","November","December","January","February","March","April","May","June","July","August","September")
 
 selected_unique_cases <- scdbv %>%
