@@ -1,6 +1,6 @@
 ---
 title: "Exploring U.S. Supreme Court Decisions"
-author: "Your name"
+author: "Ojaswi Malik"
 output: github_document
 ---
 
@@ -9,10 +9,21 @@ output: github_document
 ```{r, echo = TRUE}
 # load useful packages
 library(tidyverse)
+theme_set(theme_minimal()) 
 
 # load data
-scdbv_mod <- read_csv("data/SCDB_2019_01_justiceCentered_Citation.csv")
-scdbv_leg <- read_csv("data/SCDB_Legacy_05_justiceCentered_Citation.csv")
+scdbv_mod <- read_csv("data/SCDB_2019_01_justiceCentered_Citation.csv", col_types = 
+                        cols(
+                          docket = col_character()
+                        ))
+
+scdbv_leg <- read_csv("data/SCDB_Legacy_05_justiceCentered_Citation.csv", col_types = 
+                        cols(
+                          docket = col_character(),
+                          adminAction = col_double(),
+                          adminActionState = col_double(),
+                          sctCite = col_character()
+                        ))
 scdbv_mod
 scdbv_leg
 ```
@@ -20,7 +31,7 @@ scdbv_leg
 ## Combine the datasets
 
 ```{r}
-# scdbv <- # add your code here
+scdbv <- bind_rows(scdbv_mod, scdbv_leg)
 ```
 
 ## Recode variables as you find necessary
@@ -32,12 +43,39 @@ scdbv_leg
 ## What percentage of cases in each term are decided by a one-vote margin (i.e. 5-4, 4-3, etc.)
 
 ```{r}
+cases <- scdbv %>%
+  select(caseIssuesId, term, majVotes, minVotes)
 
+unique_cases <- unique(cases)
+
+unique_cases %>%
+  mutate(one_vote = majVotes - minVotes) %>%
+  filter(one_vote == 1) %>%
+  group_by(term, one_vote) %>%
+  summarise(
+    count = n(),
+  ) %>%
+  ggplot(mapping = aes(x = term, y = (count)/sum(count) )) +
+  geom_line() +
+  scale_y_continuous(labels=scales::percent)
 ```
 
 ## In each term he served on the Court, in what percentage of cases was Justice Antonin Scalia in the majority?
 
 ```{r}
+scdbv %>%
+  filter( justiceName == "AScalia" ) %>%
+  group_by(term) %>%
+  summarise(
+    percent = mean(majority == 2, na.rm = TRUE) 
+  ) %>%
+  ggplot(mapping = aes(x = term, y = percent )) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent, limits=c(0,NA)) + 
+  labs ( title = "Percent of the time Scalia was in the majority", 
+         x = "Term",
+         y = "Percent of total decisions", 
+         caption = "Source: The Supreme Court Database")
 
 ```
 
@@ -45,11 +83,43 @@ scdbv_leg
 
 ```{r}
 
+all_cases <- scdbv %>%
+  filter(justiceName == "AScalia" ) %>%
+  group_by(term) %>%
+  summarise(
+    percent = mean(majority == 2, na.rm = TRUE) 
+  ) 
+
+non_unanimous <- scdbv %>%
+  filter( justiceName == "AScalia" & minVotes > 0) %>%
+  group_by(term) %>%
+  summarise(
+    percent = mean(majority == 2, na.rm = TRUE) 
+  )
+  
+  
+ggplot( mapping = aes(x = term, y = percent)) +
+  geom_line(data = all_cases) +
+  geom_line(data = non_unanimous) + 
+  scale_y_continuous(labels = scales::percent, limits=c(0,NA)) +
+  labs ( title = "Percent of the time Scalia was in the majority", 
+         x = "Term",
+         y = "Percent of total decisions", 
+         caption = "Source: The Supreme Court Database")
+
+#issue - COLOR LINES
+
 ```
 
 ## In each term, what percentage of cases were decided in the conservative direction?
 
 ```{r}
+scdbv %>%
+  filter( decisionDirection == 1) %>%
+  group_by(term, decisionDirection) %>%
+  summarise( count = n()) %>%
+  ggplot (mapping = aes(x = term, y = count/sum(count))) +
+  geom_line()
 
 ```
 
