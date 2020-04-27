@@ -43,19 +43,27 @@ scdbv <- bind_rows(scdbv_mod, scdbv_leg)
 ## What percentage of cases in each term are decided by a one-vote margin (i.e. 5-4, 4-3, etc.)
 
 ```{r}
-cases <- scdbv %>%
-  select(caseIssuesId, term, majVotes, minVotes)
+unique_cases <- scdbv %>%
+  select(caseIssuesId, term, majVotes, minVotes)%>%
+  unique()
 
-unique_cases <- unique(cases)
-
-unique_cases %>%
+total_cases <- unique_cases %>%
   group_by(term) %>%
-  mutate(total = n(), one_vote = majVotes - minVotes) %>%
+  summarise(total = n())
+
+only_one_vote <- unique_cases %>%
+  mutate(one_vote = majVotes - minVotes) %>%
   filter(one_vote == 1 ) %>%
-  group_by(term, one_vote, total) %>%
+  group_by(term, one_vote) %>%
   summarise(
     count = n(),
-  ) %>%
+  ) 
+
+joined <- left_join(x = total_cases, y = only_one_vote) %>%
+  select(term, total, count) %>%
+  mutate(count = replace_na(count, 0))
+
+joined %>%
   ggplot(mapping = aes(x = term, y = count/total )) +
   geom_line() +
   scale_y_continuous(labels=scales::percent) + 
@@ -64,7 +72,6 @@ unique_cases %>%
          y = "Percent of total cases decided", 
          caption = "Source: The Supreme Court Database")
 
-# 0 not taken in account on x-axis
 ```
 
 ## In each term he served on the Court, in what percentage of cases was Justice Antonin Scalia in the majority?
@@ -123,10 +130,9 @@ ggplot( mapping = aes(x = term, y = percent)) +
 ## In each term, what percentage of cases were decided in the conservative direction?
 
 ```{r}
-case <- scdbv %>%
-  select(caseIssuesId, term, decisionDirection)
-
-only_unique_cases <- unique(case)
+only_unique_cases <- scdbv %>%
+  select(caseIssuesId, term, decisionDirection) %>%
+  unique()
 
 only_unique_cases %>%
   group_by(term) %>%
@@ -148,7 +154,28 @@ only_unique_cases %>%
 ## The Chief Justice is frequently seen as capable of influencing the ideological direction of the Court. Create a graph similar to the one above that also incorporates information on who was the Chief Justice during the term.
 
 ```{r}
+only_unique_cases_chief <- scdbv %>%
+  select(caseIssuesId, term, decisionDirection, chief) %>%
+  unique()
 
+chief_levels <- c("Jay", "Rutledge", "Ellsworth","Marshall","Taney","Chase","Waite","Fuller","White","Taft","Hughes","Stone","Vinson","Warren","Burger","Rehnquist","Roberts")
+
+only_unique_cases_chief %>%
+  group_by(term) %>%
+  mutate(total = n()) %>%
+  filter( decisionDirection == 1) %>%
+  group_by(term, decisionDirection, total, chief) %>%
+  summarise( count = n()) %>%
+  ggplot (mapping = aes(x = term, y = count/total)) +
+  geom_line() +
+  facet_wrap(~ factor(chief, levels = chief_levels)) +
+  scale_y_continuous(labels=scales::percent) + 
+  labs ( title = "U.S. Supreme Court",
+         subtitle = "Percent of cases decided in a conservative fashion", 
+         x = "Term",
+         y = "Percent of total decisions", 
+         caption = "Source: The Supreme Court Database") +
+  theme(axis.text.x = element_text( angle=45))
 ```
 
 ## In each term, how many of the term's published decisions (decided after oral arguments) were announced in a given month?
