@@ -21,6 +21,7 @@ dadmom
 
 ```{r}
 # write your code to tidy the data here
+#Using a combination of gather, seperate and pivot_wider functions from tidyr 
   
 dadmom %>%
   gather(key = "variables", value = "value", named:incm) %>%

@@ -1,7 +1,9 @@
 # Homework 03: Exploring and wrangling data
 
 **Ojaswi Malik** 
-- First Commit: Making sure Setup works
+- Solutions for dadmon -> dadmom.Rmd
+- Solutions for gapminder -> gapminder.Rmd
+- Solutions for scotus -> scotus.Rmd
 
 See detailed instructions for this homework assignment [here](https://cfss.uchicago.edu/homework/wrangle-data/).
 

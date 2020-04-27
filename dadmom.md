@@ -40,6 +40,7 @@ dadmom
 
 ``` r
 # write your code to tidy the data here
+#Using a combination of gather, seperate and pivot_wider functions from tidyr 
   
 dadmom %>%
   gather(key = "variables", value = "value", named:incm) %>%
@@ -77,7 +78,7 @@ devtools::session_info()
     ##  collate  en_US.UTF-8                 
     ##  ctype    en_US.UTF-8                 
     ##  tz       Asia/Kolkata                
-    ##  date     2020-04-27                  
+    ##  date     2020-04-28                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source                        
