@@ -32,6 +32,7 @@ scdbv_leg
 
 ```{r}
 scdbv <- bind_rows(scdbv_mod, scdbv_leg)
+scdbv
 ```
 
 ## Recode variables as you find necessary
@@ -41,6 +42,8 @@ scdbv <- bind_rows(scdbv_mod, scdbv_leg)
 ```
 
 ## What percentage of cases in each term are decided by a one-vote margin (i.e. 5-4, 4-3, etc.)
+
+**Answer**: One-vote margin decisions were relatively low in earlier terms until 1925 when they started rising. However, there are high peaks and low troughs indicating there is no constant trend of one-vote margin decisions. The high peak to 50% before 1800 is due 1 one-vote margin decision out of 2 total decisions in 1794.
 
 ```{r}
 unique_cases <- scdbv %>%
@@ -76,6 +79,8 @@ joined %>%
 
 ## In each term he served on the Court, in what percentage of cases was Justice Antonin Scalia in the majority?
 
+**Answer**: The graph indicates that Justice Scalia was in majority more than 75% of the time almost always during his term.
+
 ```{r}
 scdbv %>%
   filter( justiceName == "AScalia" ) %>%
@@ -94,6 +99,8 @@ scdbv %>%
 ```
 
 ## Create a graph similar to above that adds a second component which compares the percentage for all cases versus non-unanimous cases (i.e. there was at least one dissenting vote)
+
+**Answer**: The graph indicates that in non-unanimous decisions woth Justice Scalia was in majority are lower that all decisions where he was in majority. Both graphs follow similiar patterns, but non-unanimous decisons are a lower percent than all decisions.
 
 ```{r}
 
@@ -129,6 +136,8 @@ ggplot( mapping = aes(x = term, y = percent)) +
 
 ## In each term, what percentage of cases were decided in the conservative direction?
 
+**Answer**: Decisions in the conservative direction are range between approx. 10-70% of all cases. Even in consecutive years, the decisions can be drastically different.
+
 ```{r}
 only_unique_cases <- scdbv %>%
   select(caseIssuesId, term, decisionDirection) %>%
@@ -152,6 +161,8 @@ only_unique_cases %>%
 ```
 
 ## The Chief Justice is frequently seen as capable of influencing the ideological direction of the Court. Create a graph similar to the one above that also incorporates information on who was the Chief Justice during the term.
+
+**Answer**: Although, I attempted the other advanced challenge, I wanted to attempt this one too. I am curious to learn another way to factor the chiefs in the correct order without using levels, and using the term-wise data. 
 
 ```{r}
 only_unique_cases_chief <- scdbv %>%
@@ -179,6 +190,8 @@ only_unique_cases_chief %>%
 ```
 
 ## In each term, how many of the term's published decisions (decided after oral arguments) were announced in a given month?
+
+**Answer**: It appears that decisions are less likely to be announced in the beginning and ending of the SC Calendar year (October and September). June has the highest median for number of published decisions announced.
 
 ```{r}
 

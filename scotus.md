@@ -109,11 +109,49 @@ scdbv_leg
 
 ``` r
 scdbv <- bind_rows(scdbv_mod, scdbv_leg)
+scdbv
 ```
+
+    ## # A tibble: 252,482 x 61
+    ##    caseId docketId caseIssuesId voteId dateDecision decisionType usCite sctCite
+    ##    <chr>  <chr>    <chr>        <chr>  <chr>               <dbl> <chr>  <chr>  
+    ##  1 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  2 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  3 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  4 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  5 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  6 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  7 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  8 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ##  9 1946-… 1946-00… 1946-001-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ## 10 1946-… 1946-00… 1946-002-01… 1946-… 11/18/1946              1 329 U… 67 S. …
+    ## # … with 252,472 more rows, and 53 more variables: ledCite <chr>,
+    ## #   lexisCite <chr>, term <dbl>, naturalCourt <dbl>, chief <chr>, docket <chr>,
+    ## #   caseName <chr>, dateArgument <chr>, dateRearg <chr>, petitioner <dbl>,
+    ## #   petitionerState <dbl>, respondent <dbl>, respondentState <dbl>,
+    ## #   jurisdiction <dbl>, adminAction <dbl>, adminActionState <dbl>,
+    ## #   threeJudgeFdc <dbl>, caseOrigin <dbl>, caseOriginState <dbl>,
+    ## #   caseSource <dbl>, caseSourceState <dbl>, lcDisagreement <dbl>,
+    ## #   certReason <dbl>, lcDisposition <dbl>, lcDispositionDirection <dbl>,
+    ## #   declarationUncon <dbl>, caseDisposition <dbl>,
+    ## #   caseDispositionUnusual <dbl>, partyWinning <dbl>,
+    ## #   precedentAlteration <dbl>, voteUnclear <dbl>, issue <dbl>, issueArea <dbl>,
+    ## #   decisionDirection <dbl>, decisionDirectionDissent <dbl>,
+    ## #   authorityDecision1 <dbl>, authorityDecision2 <dbl>, lawType <dbl>,
+    ## #   lawSupp <dbl>, lawMinor <chr>, majOpinWriter <dbl>, majOpinAssigner <dbl>,
+    ## #   splitVote <dbl>, majVotes <dbl>, minVotes <dbl>, justice <dbl>,
+    ## #   justiceName <chr>, vote <dbl>, opinion <dbl>, direction <dbl>,
+    ## #   majority <dbl>, firstAgreement <dbl>, secondAgreement <dbl>
 
 ## Recode variables as you find necessary
 
 ## What percentage of cases in each term are decided by a one-vote margin (i.e. 5-4, 4-3, etc.)
+
+**Answer**: One-vote margin decisions were relatively low in earlier
+terms until 1925 when they started rising. However, there are high peaks
+and low troughs indicating there is no constant trend of one-vote margin
+decisions. The high peak to 50% before 1800 is due 1 one-vote margin
+decision out of 2 total decisions in 1794.
 
 ``` r
 unique_cases <- scdbv %>%
@@ -154,6 +192,9 @@ joined %>%
 
 ## In each term he served on the Court, in what percentage of cases was Justice Antonin Scalia in the majority?
 
+**Answer**: The graph indicates that Justice Scalia was in majority more
+than 75% of the time almost always during his term.
+
 ``` r
 scdbv %>%
   filter( justiceName == "AScalia" ) %>%
@@ -173,6 +214,11 @@ scdbv %>%
 ![](scotus_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ## Create a graph similar to above that adds a second component which compares the percentage for all cases versus non-unanimous cases (i.e. there was at least one dissenting vote)
+
+**Answer**: The graph indicates that in non-unanimous decisions woth
+Justice Scalia was in majority are lower that all decisions where he was
+in majority. Both graphs follow similiar patterns, but non-unanimous
+decisons are a lower percent than all decisions.
 
 ``` r
 all_cases <- scdbv %>%
@@ -206,6 +252,10 @@ ggplot( mapping = aes(x = term, y = percent)) +
 
 ## In each term, what percentage of cases were decided in the conservative direction?
 
+**Answer**: Decisions in the conservative direction are range between
+approx. 10-70% of all cases. Even in consecutive years, the decisions
+can be drastically different.
+
 ``` r
 only_unique_cases <- scdbv %>%
   select(caseIssuesId, term, decisionDirection) %>%
@@ -230,6 +280,11 @@ only_unique_cases %>%
 ![](scotus_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ## The Chief Justice is frequently seen as capable of influencing the ideological direction of the Court. Create a graph similar to the one above that also incorporates information on who was the Chief Justice during the term.
+
+**Answer**: Although, I attempted the other advanced challenge, I wanted
+to attempt this one too. I am curious to learn another way to factor the
+chiefs in the correct order without using levels, and using the
+term-wise data.
 
 ``` r
 only_unique_cases_chief <- scdbv %>%
@@ -262,6 +317,11 @@ only_unique_cases_chief %>%
 ![](scotus_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ## In each term, how many of the term’s published decisions (decided after oral arguments) were announced in a given month?
+
+**Answer**: It appears that decisions are less likely to be announced in
+the beginning and ending of the SC Calendar year (October and
+September). June has the highest median for number of published
+decisions announced.
 
 ``` r
 library(lubridate)
